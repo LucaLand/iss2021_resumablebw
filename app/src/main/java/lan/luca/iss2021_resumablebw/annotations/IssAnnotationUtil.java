@@ -9,30 +9,30 @@ import java.util.regex.Pattern;
 
 
 public class IssAnnotationUtil {
-/*
--------------------------------------------------------------------------------
-RELATED TO PROTOCOLS
--------------------------------------------------------------------------------
- */
-    public  static ProtocolInfo getProtocol(Object element ){
-        Class<?> clazz            = element.getClass();
-        Annotation[] annotations  = clazz.getAnnotations();
+    /*
+    -------------------------------------------------------------------------------
+    RELATED TO PROTOCOLS
+    -------------------------------------------------------------------------------
+     */
+    public static ProtocolInfo getProtocol(Object element) {
+        Class<?> clazz = element.getClass();
+        Annotation[] annotations = clazz.getAnnotations();
         ProtocolInfo protocolInfo = null;
         for (Annotation annot : annotations) {
             if (annot instanceof IssProtocolSpec) {
                 IssProtocolSpec info = (IssProtocolSpec) annot;
-                protocolInfo    = checkProtocolConfigFile(info.configFile());
-                if( protocolInfo == null ) {
-                    protocolInfo = new ProtocolInfo( info.protocol(), info.url() );
+                protocolInfo = checkProtocolConfigFile(info.configFile());
+                if (protocolInfo == null) {
+                    protocolInfo = new ProtocolInfo(info.protocol(), info.url());
                 }
                 //System.out.println("IssAnnotationUtil | getProtocol protocolInfo=" + protocolInfo );
-             }
+            }
         }
-        return  protocolInfo;
+        return protocolInfo;
     }
 
     //Used also by UniboRobotApplicationStarter
-    public static ProtocolInfo checkProtocolConfigFile( String configFileName ) {
+    public static ProtocolInfo checkProtocolConfigFile(String configFileName) {
         try {
             System.out.println("IssAnnotationUtil | checkProtocolConfigFile configFileName=" + configFileName);
             FileInputStream fis = new FileInputStream(configFileName);
@@ -56,15 +56,15 @@ RELATED TO PROTOCOLS
     }
 
     //Quite bad: we will replace with Prolog parser
-    public static String getProtocolConfigInfo(String functor, String line){
+    public static String getProtocolConfigInfo(String functor, String line) {
         Pattern pattern = Pattern.compile(functor);
         Matcher matcher = pattern.matcher(line);
         String content = null;
-        if(matcher.find()) {
-            int end = matcher.end() ;
-            content = line.substring( end, line.indexOf(")") )
-                    .replace("\"","")
-                    .replace("(","").trim();
+        if (matcher.find()) {
+            int end = matcher.end();
+            content = line.substring(end, line.indexOf(")"))
+                    .replace("\"", "")
+                    .replace("(", "").trim();
         }
         return content;
     }
@@ -75,7 +75,7 @@ RELATED TO PROTOCOLS
 RELATED TO ROBOT MOVES
 -------------------------------------------------------------------------------
  */
-    public static void getMoveTimes( Object obj, HashMap<String, Integer> mvtimeMap){
+    public static void getMoveTimes(Object obj, HashMap<String, Integer> mvtimeMap) {
         Class<?> clazz = obj.getClass();
         Annotation[] annotations = clazz.getAnnotations();
         fillMap(mvtimeMap, annotations);
@@ -86,7 +86,7 @@ RELATED TO ROBOT MOVES
             if (annotation instanceof RobotMoveTimeSpec) {
                 //Priority to the con
                 RobotMoveTimeSpec info = (RobotMoveTimeSpec) annotation;
-                if( ! checkRobotConfigFile(info.configFile(), mvtimeMap) ) {
+                if (!checkRobotConfigFile(info.configFile(), mvtimeMap)) {
                     mvtimeMap.put("w", info.wtime());
                     mvtimeMap.put("s", info.stime());
                     mvtimeMap.put("l", info.ltime());
@@ -100,8 +100,8 @@ RELATED TO ROBOT MOVES
 
     //Used also by IssArilRobotSupport
     public static boolean checkRobotConfigFile(
-            String configFileName, HashMap<String, Integer> mvtimeMap){
-        try{
+            String configFileName, HashMap<String, Integer> mvtimeMap) {
+        try {
             //spec( htime( 100 ),  ltime( 300 ), rtime( 300 ),  wtime( 600 ), wstime( 600 ) ).
             //System.out.println("IssAnnotationUtil | checkRobotConfigFile configFileName=" + configFileName);
             FileInputStream fis = new FileInputStream(configFileName);
@@ -109,11 +109,11 @@ RELATED TO ROBOT MOVES
             String line = sc.nextLine();
             //System.out.println("IssAnnotationUtil | checkRobotConfigFile line=" + line);
             String[] items = line.split(",");
-            mvtimeMap.put("h", getRobotConfigInfo("htime", items[0] ));
-            mvtimeMap.put("l", getRobotConfigInfo("ltime", items[1] ));
-            mvtimeMap.put("r", getRobotConfigInfo("rtime", items[2] ));
-            mvtimeMap.put("w", getRobotConfigInfo("wtime", items[3] ));
-            mvtimeMap.put("s", getRobotConfigInfo("stime", items[4] ));
+            mvtimeMap.put("h", getRobotConfigInfo("htime", items[0]));
+            mvtimeMap.put("l", getRobotConfigInfo("ltime", items[1]));
+            mvtimeMap.put("r", getRobotConfigInfo("rtime", items[2]));
+            mvtimeMap.put("w", getRobotConfigInfo("wtime", items[3]));
+            mvtimeMap.put("s", getRobotConfigInfo("stime", items[4]));
             //System.out.println("IssAnnotationUtil | checkRobotConfigFile ltime=:" + mvtimeMap.get("l"));
             return true;
         } catch (Exception e) {
@@ -123,18 +123,18 @@ RELATED TO ROBOT MOVES
 
     }
 
-    protected static Integer getRobotConfigInfo(String functor, String line){
+    protected static Integer getRobotConfigInfo(String functor, String line) {
         Pattern pattern = Pattern.compile(functor);
         Matcher matcher = pattern.matcher(line);
         String content = "0";
-        if(matcher.find()) {
-            int end = matcher.end() ;
-            content = line.substring( end, line.indexOf(")") )
-                    .replace("\"","")
-                    .replace("(","").trim();
+        if (matcher.find()) {
+            int end = matcher.end();
+            content = line.substring(end, line.indexOf(")"))
+                    .replace("\"", "")
+                    .replace("(", "").trim();
             //System.out.println("IssAnnotationUtil | getRobotConfigInfo functor=" + functor + " v=" + Integer.parseInt(content));
         }
-        return Integer.parseInt( content );
+        return Integer.parseInt(content);
     }
 
 

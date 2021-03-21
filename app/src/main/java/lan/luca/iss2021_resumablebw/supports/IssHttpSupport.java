@@ -1,10 +1,10 @@
 /**
- IssHttpSupport.java
- ===============================================================
- Support for HTTP interaction with a remote server
- The correct format of the arguments of operations forward/request
- must be provided by the user
- ===============================================================
+ * IssHttpSupport.java
+ * ===============================================================
+ * Support for HTTP interaction with a remote server
+ * The correct format of the arguments of operations forward/request
+ * must be provided by the user
+ * ===============================================================
  */
 package lan.luca.iss2021_resumablebw.supports;
 
@@ -21,62 +21,64 @@ import org.json.JSONObject;
 import java.net.URI;
 
 public class IssHttpSupport implements IssCommSupport {
-    private CloseableHttpClient httpclient;
-    private  String URL  = "unknown";
+    private final CloseableHttpClient httpclient;
+    private String URL = "unknown";
 
-    public IssHttpSupport(String url ){
+    public IssHttpSupport(String url) {
         httpclient = HttpClients.createDefault();
-        URL        = url;
-        System.out.println("        IssHttpSupport | created IssHttpSupport url=" + url  );
+        URL = url;
+        System.out.println("        IssHttpSupport | created IssHttpSupport url=" + url);
         //System.out.println("        IssHttpSupport |  n_Threads=" + Thread.activeCount());
     }
 
     @Override
-    public void forward( String msg)  {
-        System.out.println( "        IssHttpSupport | forward:" + msg  );
+    public void forward(String msg) {
+        System.out.println("        IssHttpSupport | forward:" + msg);
         performrequest(msg);
     }
 
     @Override
-    public void request( String msg) {
-        System.out.println( "        IssHttpSupport | request:" + msg  );
+    public void request(String msg) {
+        System.out.println("        IssHttpSupport | request:" + msg);
         performrequest(msg);    //the answer is lost
     }
 
     @Override
     public void reply(String msg) {
-        System.out.println( "        IssHttpSupport | WARNING: reply NOT IMPLEMENTED"  );
+        System.out.println("        IssHttpSupport | WARNING: reply NOT IMPLEMENTED");
     }
 
     @Override
-    public String requestSynch( String msg) {
+    public String requestSynch(String msg) {
         //System.out.println( "        IssHttpSupport | requestSynch:" + msg  );
         return performrequest(msg);    //the answer is lost
     }
 
     @Override
-    public void registerObserver( IssObserver obs ){
+    public void registerObserver(IssObserver obs) {
         //TODO
     }
+
     @Override
-    public void removeObserver( IssObserver obs ){
+    public void removeObserver(IssObserver obs) {
         //TODO
     }
+
     @Override
-    public void close(){
+    public void close() {
         try {
             httpclient.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
- //===================================================================
+    //===================================================================
 
-    protected String performrequest( String msg )  {
+    protected String performrequest(String msg) {
         boolean endmove = false;
         try {
             //System.out.println( "        IssHttpSupport | performrequest:" + msg + " URL=" + URL );
-            StringEntity entity     = new StringEntity(msg);
+            StringEntity entity = new StringEntity(msg);
             HttpUriRequest httppost = RequestBuilder.post()
                     .setUri(new URI(URL))
                     .setHeader("Content-Type", "application/json")
@@ -85,16 +87,16 @@ public class IssHttpSupport implements IssCommSupport {
                     .build();
             CloseableHttpResponse response = httpclient.execute(httppost);
             //System.out.println( "IssHttpSupport | response:" + response  );
-            String jsonStr = EntityUtils.toString( response.getEntity() );
-            JSONObject jsonEndmove = new JSONObject(jsonStr) ;
+            String jsonStr = EntityUtils.toString(response.getEntity());
+            JSONObject jsonEndmove = new JSONObject(jsonStr);
             //System.out.println("IssHttpSupport | jsonEndmove=" + jsonEndmove);
-            if( jsonEndmove.get("endmove") != null ) {
+            if (jsonEndmove.get("endmove") != null) {
                 endmove = jsonEndmove.getBoolean("endmove");
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("        IssHttpSupport | ERROR:" + e.getMessage());
-         }
-        return ""+endmove;
+        }
+        return "" + endmove;
     }
 
 }
