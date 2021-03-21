@@ -26,5 +26,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("lan.luca.resumableBoundaryWalker.App")
+    mainClass.set("lan.luca.iss2021_resumablebw.App")
 }
