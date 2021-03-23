@@ -14,7 +14,7 @@
 		  link.href = href;
 		  return false;
 		}
-		function htmlPrewiew(link) {
+		function getHtmlPreview(link) {
 		  var gitHub = 'https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/';
 		  var href = link.href;
 		  href = href.slice(11);
@@ -28,8 +28,8 @@
     
 <body>
 <div id="top">
-<h1>Lab ISS | the project resumableBoundaryWalker<font size="5"></font> </h1>
-Time: 1h 40min + 2h 30min
+<h1>Lab ISS | the project resumableBoundaryWalker (Landolfi Luca)<font size="5"></font> </h1>
+<!-- Time: 1h 40min + 2h 30min + 35 min + 25 min = 5h 10 min -->
 </div>  
 
 <div class="body"> 
@@ -151,25 +151,81 @@ cognome_nome_resumablebw.pdf
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
 <h2>Problem analysis</h2>
-... <tt>TODO</tt> <br/><br/>
+<h3>Revelant aspects</h3>
+	<ol>
+	In the <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html#commands" target="web">VirtualRobot2021.html: commands</a> the customer states:
+		<li>that the robot can receive move commands in two different ways:
+			<ul>
+				<li>by sending messages to the port <tt>8090</tt> using  <ks>HTTP POST</ks> </li>
+				<li>by sending messages to the port <tt>8091</tt> using a <ks>websocket</ks> </li>
+			</ul>
+		</li>
+		<li>that the robot can send information:
+		<ul>
+			<li>Response to move request (<kc>endmove</kc>) replying using: <ks>HTTP POST</ks> and also <ks>websocket</ks> messages</li>
+			<li>Sonar information or collision detections from sensor by sending message using a websocket from the port <tt>8091</tt></li>
+		</ul>
+		</li>
+		<li> With respect to the technological level, there are many libraries in many programming languages that support the
+		required protcols. 
+			<div class="remark">
+				However, the problem does introduce an <k>abstraction gap at the conceptual level</k>,
+				since <kc>the required logical interaction</kc> are <kc>asynchronous</kc>.
+				Application need to handle asynchronous messages coming from the <ks>robot</ks> at any time of the execution. Wenv can <em>dispatch</em> some information at any time of the execution, even while
+				the application is executing commands (<em>request-response</em>) on the robot.
+			</div>
+		</li>
+	</ol>
+	<div class="normalTxt">
+		The following resources could be usefully exploited to reduce the development time of a first prototype of the application:
+		<ol>
+			<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui/ConsoleGui.java" onclick="getFromGithub(this)" target="_blank">Consolegui.java</a>  
+			(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
+			<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotMovesInfo.java" target="_blank" onclick="getFromGithub(this)">RobotMovesInfo.java</a>  
+			(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
+			<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotInputController.java" target="_blank" onclick="getFromGithub(this)">RobotInputController.java</a>  
+			(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
+		</ol>
+		Also resources from the <a href="https://github.com/anatali/issLab2021/tree/main/it.unibo.virtualrobotclient/" target="_blank">VirtualRobotClient</a> can be useful:
+		<ul>
+			<li>The <a href="https://github.com/anatali/issLab2021/tree/main/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/supports" target="_blank">Supports Package</a></li>
+			<li>The <a href="https://github.com/anatali/issLab2021/tree/main/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/annotations" target="_blank">Annonation Support Package</a> </li>
+			<li>The <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotBoundaryLogic.java" onClick="getFromGithub()" target="_blank">RobotBoundaryLogic.java</a>
+			(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>)</li>
+		</ul>
+	</div>
+	
+	<h3>Logical Architecture</h3>
+	<table style="width:98%">
+			<tbody>	
+				<tr>
+					<td style="width:60%">
+					A <k>distributed system</k> with two software macro-components will match the requirements:
+						<ol>
+						<li>the <a href="https://htmlpreview.github.io/?https://github.com/anatali/issLab2021/blob/master/it.unibo.virtualRobot2020/userDocs/VirtualRobot2021.html" target="web"><ks>VirtualRobot</ks></a>, given by the customer</li>
+						<li>our <ks>Application</ks> interacts with the robot with asynchronus communications</li>
+						</ol>
+					A first scheme of the logical architecture  of the systems can be defined as shown in the figure
+					(for the meaning of the symbols, see the <a href="./img/legenda.png" target="web">legenda</a>)
 
-The following resources could be usefully exploited to reduce the development time of a first prototype of the application:
+					</td>
+					<td>  <center><img src="./img/logicArch1.png" alt="logicArch0" width="100%" ></center>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+			<br/><br/>
+			We observe that:
+		<ul>
+			<li>The specification of the exact 'nature' of our <em>cautiosExplorer</em> software is left to the designer.
+			However, we can say here that is it <b>not a database, or a function or an object</b>. And to properly handle the <ks>asynchronus communication</ks> on the webscoket
+			the designer could make reference to the <a href="https://it.wikipedia.org/wiki/Observer_pattern" target="web"><ks>Observer</ks></a> design pattern.</li>
+			<li>The designer can use a MVC architectural pattern to define the architectural layer of the application to a more organized and structured project.</li>
+		</ul>
+			
+			
 
-<ol>
-<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui/ConsoleGui.java" onclick="getFromGithub(this)" target="_blank">Consolegui.java</a>  
-(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/consolegui" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
-
-<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotMovesInfo.java" target="_blank" onclick="getFromGithub(this)">RobotMovesInfo.java</a>  
-(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
-
-
-<li>The  <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv/RobotInputController.java" target="_blank" onclick="getFromGithub(this)">RobotInputController.java</a>  
-(in project <a href="/it.unibo.virtualrobotclient/app/src/main/java/it/unibo/wenv" target="_blank" onclick="getFromGithub(this)">it.unibo.virtualrobotclient</a>) </li>
-</ol>
-
-... <tt>TODO</tt> <br/><br/>
-
-The expected time required for the development of the application is (no more than) 6 hours.
+<div class="remark">The expected time required for the development of the application is (no more than) 6 hours.</div>
 
 
 
@@ -177,8 +233,25 @@ The expected time required for the development of the application is (no more th
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
 <h2>Test plans</h2> 
+<div class="normalTxt>">
+	To check that the application fulfills the requirements, we could keep track of the moves done by the robot.
+	For example:
 
+	<pre>
+...
+let us define <kc>String moves="";</kc>
+for 4 times: 
+	1) send to the robot the request to execute the command <kc>moveForward</kc>;
+	if the answer is 'true' <ks>append the symbol "w"</ks> to <kc>moves</kc> and continue to do 1); 
+	2) when the answer of the request becomes 'false',
+	send to the robot the request to execute the command <kc>turnLeft</kc> and <ks>append the symbol "l"</ks> to <kc>moves</kc>
+	</pre>
 
+	In this way, when the application terminates, the string <kc>moves</kc> should have the typical structure of a 
+	<a href="https://en.wikipedia.org/wiki/Regular_expression" target="web"><em>regular expression</em></a>,
+	that can be easily checked with a TestUnit software:
+	<pre><kc>moves</kc>: <ks>"w*lw*lw*lw*l"</ks>     <kc><ks>*</ks> : repetion N times(N>=0) </pre>
+</div>
 
 
 <!-- -------------------------------------------------------------------------------------------------------------------- -->
@@ -195,7 +268,7 @@ The expected time required for the development of the application is (no more th
 			<br/>
 		</td>
 		<td>  
-			<center><img src="./img/projectArch0.png" alt="projectArch0" width="60%" style="margin:10px;" ></center>
+			<center><img src="./img/logicArch1.png" alt="projectArch0" width="80%" style="margin:10px;" ></center>
 		</td>
 	</tr>
 	<tr>
@@ -207,27 +280,27 @@ The expected time required for the development of the application is (no more th
 				which is the simplest form of software architectural pattern, where the components are organized in <i>horizontal layers</i>.
 				</div>
 			<div class="remark">
-				The architecture of this project make refernce to the <ks><a href="/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html" onClick="htmlPrewiew(this)">BoundaryWalk Project</a></ks> and the <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="htmlPrewiew(this)">VirtualRobot Project</a></ks>.
+				The architecture of this project make refernce to the <ks><a href="/it.unibo.boundaryWalk/userDocs/BoundaryWalk.html" onClick="getHtmlPreview(this)">BoundaryWalk Project</a></ks> and the <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="getHtmlPreview(this)">VirtualRobot Project</a></ks>.
 				The first layered structure is reported in the <ks>BoundaryWalk</ks>.
-				the <k>observer pattern</k> is also used to manage asynchronous communication, as explained in <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="htmlPrewiew(this)">VirtualRobotClient</a></ks> document.
+				the <k>observer pattern</k> is also used to manage asynchronous communication, as explained in <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="getHtmlPreview(this)">VirtualRobotClient</a></ks> document.
 				We can see the architecture in the image on the left.
 			</div>
 			
 		</td>
 		<td>
 			<h4>Zoomimg into the application </h4><hr/>
-			<center><img src="./img/RobotBoundaryZooming.png" alt="RobotBoundaryZooming" width="70%" style="margin:10px;" ></center>
+			<center><img src="./img/RobotBoundaryZooming.png" alt="RobotBoundaryZooming" width="95%" style="margin:10px;" ></center>
 		</td>
 	</tr>
 	<tr>
 		<td style="width:35%">
 			<h3>Adding isolated business logic to save the robots moves history</h3>
 			<div class="normalTxt">
-			Referencing <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="htmlPrewiew(this)">VirtualRobotClient</a></ks> we isolate the business logic to mantain the robot moves info as in the image, adding two components <ks>RobotBoundaryLogic</ks> and <ks>RobotMovesInfo</ks>.
+			Referencing <ks><a href="/it.unibo.virtualrobotclient/userDocs/VirtualrobotClients.html" onClick="getHtmlPreview(this)">VirtualRobotClient</a></ks> we isolate the business logic to mantain the robot moves info as in the image, adding two components <ks>RobotBoundaryLogic</ks> and <ks>RobotMovesInfo</ks>.
 			</div>
 		</td>
 		<td>
-			<center><img src="./img/RobotBoundaryArilZooming.png" alt="RobotBoundaryZooming" width="70%" style="margin:10px;" ></center>
+			<center><img src="./img/RobotBoundaryArilZooming.png" alt="RobotBoundaryZooming" width="95%" style="margin:10px;" ></center>
 		</td>
 	</tr>
 	<tr>
@@ -242,7 +315,19 @@ The expected time required for the development of the application is (no more th
 			</div>
 		</td>
 		<td>
-			
+			<center><img src="./img/RobotBoundaryGuiZooming1.png" alt="RobotBoundaryZooming" width="95%" style="margin:10px;" ></center>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2 >
+			<div class="normalTxt">
+				The imported class that will be modified are:
+				<ul>
+					<li>the <ks>Controller</ks> class (<a href="https://github.com/LucaLand/iss2021_resumablebw/blob/18349ed3c3748c22f100110bc6eb636997eb5fe2/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotInputController.java" target="_blank">RobotInputController.java</a>) to handle messages coming from the <ks>ConsoleGui</ks></li>
+					<li>the <ks>BoundaryLogic</ks> class (<li>The <a href="https://github.com/LucaLand/iss2021_resumablebw/blob/18349ed3c3748c22f100110bc6eb636997eb5fe2/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotBoundaryLogic.java" target="_blank">RobotBoundaryLogic.java</a>) to modify the boundaryInit method making the robot starts with a resume command and restart wen it finishes the boundary</li>
+				</ul>
+				Aslo we need to add a min class <ks>ClientBoundaryGui</ks> (<a href="https://github.com/LucaLand/iss2021_resumablebw/blob/18349ed3c3748c22f100110bc6eb636997eb5fe2/app/src/main/java/lan/luca/iss2021_resumablebw/ClientBoundaryGui.java">ClientBoundaryGui.java</a>) to instantiate the Gui, supports and the controller.
+			</div>
 		</td>
 	</tr>
 </tbody>
@@ -261,7 +346,7 @@ The expected time required for the development of the application is (no more th
 <h2>Deployment</h2> 
 The deployment consists in the commit of the application on a project named <ks>lan.luca.iss2021_resumablebw</ks> of the MY GIT repository ( <k><a href="https://github.com/LucaLand/LandolfiLuca">https://github.com/LucaLand/LandolfiLuca</a></k> ).
 <br/><br/>
-The final commit commit has done after <k>XXX</k> hours of work.
+The final commit commit has done after <k>3</k> hours of work.
 
 
 

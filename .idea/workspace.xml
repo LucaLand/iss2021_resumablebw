@@ -1,47 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
-    <option name="SCOPE_TYPE" value="4" />
+    <option name="SPLITTER_PROPORTION" value="0.5678497" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6b6e1457-12e8-4981-b4c2-a3b49b9541ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IssProtocolConfig.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IssRobotConfig.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/ClientBoundaryGui.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotBoundaryLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotInputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/AppRobotSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/AppRobotSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/ArilRobotSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/ArilRobotSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/InjectSupportSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/InjectSupportSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/IssAnnotationUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/IssAnnotationUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/IssProtocolSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/IssProtocolSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/ProtocolInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/ProtocolInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/RobotMoveTimeSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/RobotMoveTimeSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/VirtualRobotSpec.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/annotations/VirtualRobotSpec.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ButtonAsGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ButtonAsGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ButtonBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ButtonBasic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ConsoleGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/ConsoleGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/GuiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/consolegui/GuiUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/IssObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/IssObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/IssOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/IssOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/MsgRobotUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/interaction/MsgRobotUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/AnswerAvailable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/AnswerAvailable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssArilRobotSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssArilRobotSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssCommSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssCommSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssCommsSupportFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssCommsSupportFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssHttpSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssHttpSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssObservableCommSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssObservableCommSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssWsSupport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/IssWsSupport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/RobotApplicationStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/supports/RobotApplicationStarter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotControllerBoundary.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotControllerBoundary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotMovesInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotMovesInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotObserver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/lan/luca/iss2021_resumablebw/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/lan/luca/iss2021_resumablebw/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotInputController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/lan/luca/iss2021_resumablebw/wenv/RobotInputController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userDocs/css/myStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/userDocs/css/myStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userDocs/img/projectArch0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/userDocs/img/robotActorFsm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/userDocs/landolfi_luca_resumablebw.html" beforeDir="false" afterPath="$PROJECT_DIR$/userDocs/landolfi_luca_resumablebw.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +31,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="lan.luca.iss2021_resumablebw" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -90,6 +58,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="Debugger_Data_Views_Java" />
   </component>
@@ -205,7 +176,35 @@
       <option name="project" value="LOCAL" />
       <updated>1616324741587</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Code Clean up">
+      <created>1616329577974</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616329577974</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Modified to implement ResumableBw project">
+      <created>1616329680415</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616329680415</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Main class added - starts the application: init Gui with controller and support">
+      <created>1616329781859</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1616329781859</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added Kotlin support for MapMaking">
+      <created>1616329826126</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1616329826126</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,11 +217,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Renamed Project" />
     <MESSAGE value="Imported Java classes and gradle settings from VirtualRobotClient proj." />
-    <option name="LAST_COMMIT_MESSAGE" value="Imported Java classes and gradle settings from VirtualRobotClient proj." />
+    <MESSAGE value="Code Clean up" />
+    <MESSAGE value="Modified to implement ResumableBw project" />
+    <MESSAGE value="Main class added - starts the application: init Gui with controller and support" />
+    <MESSAGE value="Added Kotlin support for MapMaking" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Kotlin support for MapMaking" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
