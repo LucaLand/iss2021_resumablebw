@@ -27,7 +27,6 @@ public class RobotInputController implements IssObserver {
 
         String trip = robotBehaviorLogic.doBoundaryInit();
         System.out.println("PERCORSO ROBOT:\t " + trip);
-        robotBehaviorLogic.doBoundaryInit();
     }
 
     @Override
